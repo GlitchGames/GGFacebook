@@ -30,6 +30,11 @@ facebook:login()
 facebook:simplePost( "I just started playing Forever Lost by Glitch Games, it's really awesome!", "http://itunes.apple.com/us/app/forever-lost-episode-1-hd/id542364897?ls=1&mt=8" )
 ```
 
+##### Check if the user has logged in. Only works if your listener function doesn't block the internal one
+```lua
+print( facebook:isLoggedIn() )
+```
+
 ##### Post to the users wall with a table of options
 ```lua
 local options = 
