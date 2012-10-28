@@ -68,6 +68,12 @@ function GGFacebook:new( appID, listener, permissions )
     		end
     	end
     	
+    	if event.type == "session" then
+        	if event.phase == "login" then
+        		self.loggedIn = true
+        	end
+        end
+        
     end
     
     return self
@@ -123,6 +129,12 @@ end
 -- @param params Table of paramaters passed to the Facebook API.
 function GGFacebook:showDialog( action, params )
 	facebook.showDialog( action, params )
+end
+
+--- Checks if the user is logged in, only works if you're listener function doesn't block the internal one.
+-- @return True if logged in, false otherwise.
+function GGFacebook:isLoggedIn()
+	return self.loggedIn
 end
 
 --- Destroys the Facebook object.
