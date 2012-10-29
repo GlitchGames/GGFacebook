@@ -43,7 +43,7 @@ local options =
 	link = "http://www.glitchgames.co.uk",
 	name = "Glitch Games"
 }
-GGFacebook:post( options )
+facebook:post( options )
 ```
 
 ##### Upload an image from the documents directory with a message
