@@ -162,8 +162,28 @@ function GGFacebook:sendRequest( message, to, title )
 	
 end
 
---- Make a post on a wall.
+--- Send a link to a user.
+-- @param to The user id or username of the person to send it to.
 -- @param link The link to send.
+-- @param picture The url to a picture to use for the link. Optional, by default one will be pulled from the link.
+-- @param name The name of the link. Optional, by default one will be pulled from the link.
+-- @param description The description of the link. Optional, by default one will be pulled from the link.
+function GGFacebook:sendLink( to, link, picture, name, description, to )
+	
+	local params = {}
+	
+	params.to = to
+	params.link = link
+	params.picture = picture
+	params.name = name
+	params.description = description
+	
+	self:showDialog( "send", params )
+	
+end
+
+--- Make a post on a wall.
+-- @param link The link to post.
 -- @param picture The url to a picture to use for the link. Optional, by default one will be pulled from the link.
 -- @param name The name of the link. Optional, by default one will be pulled from the link.
 -- @param caption The caption of the link. Optional, by default one will be pulled from the link.
@@ -177,6 +197,7 @@ function GGFacebook:makePost( link, picture, name, caption, description, to )
 	params.link = link
 	params.picture = picture
 	params.name = name
+	params.caption = caption
 	params.description = description
 	
 	self:showDialog( "feed", params )
