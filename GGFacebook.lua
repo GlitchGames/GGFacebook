@@ -143,7 +143,6 @@ function GGFacebook:sendRequest( message, to, title )
 	local params = {}
 	params.message = message or ""
 	params.title = title
-	params.data = data
 	
 	if to then
 		if type( to ) == "table" then
@@ -160,6 +159,27 @@ function GGFacebook:sendRequest( message, to, title )
 	end
 	
 	self:showDialog( "apprequests", params )
+	
+end
+
+--- Make a post on a wall.
+-- @param link The link to send.
+-- @param picture The url to a picture to use for the link. Optional, by default one will be pulled from the link.
+-- @param name The name of the link. Optional, by default one will be pulled from the link.
+-- @param caption The caption of the link. Optional, by default one will be pulled from the link.
+-- @param description The description of the link. Optional, by default one will be pulled from the link.
+-- @param to The user id or username of the person whose wall wall this will be posted on. Optional, default is the current user.
+function GGFacebook:makePost( link, picture, name, caption, description, to )
+	
+	local params = {}
+	
+	params.to = to
+	params.link = link
+	params.picture = picture
+	params.name = name
+	params.description = description
+	
+	self:showDialog( "feed", params )
 	
 end
 

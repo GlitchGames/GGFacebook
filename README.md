@@ -71,6 +71,16 @@ facebook:sendRequest( "Check out this game!", { "GrahamRanson", "SomeoneElse", "
 facebook:sendRequest( "Check out this game!", nil, "Dialog Title" )
 ```
 
+##### Bring up a dialog to post on a wall. Only the link is required.
+```lua
+facebook:makePost( "http://www.glitchgames.co.uk", "link to a picture", "name", "caption", "description" )
+```
+
+##### Bring up a dialog to post on the wall of a specific user. Only the link and username is required.
+```lua
+facebook:makePost( "http://www.glitchgames.co.uk", "link to a picture", "name", "caption", "description", "GlitchGames" )
+```
+
 ##### Logout
 ```lua
 facebook:logout()
