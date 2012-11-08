@@ -56,6 +56,21 @@ facebook:uploadImage( "Check out this image!", "image.png", system.DocumentsDire
 facebook:showDialog( action, params )
 ```
 
+##### Send a request to a specific user with a message and title
+```lua
+facebook:sendRequest( "Check out this game!", "GrahamRanson", "Dialog Title" )
+```
+
+##### Send a request to a group of users with a message and title
+```lua
+facebook:sendRequest( "Check out this game!", { "GrahamRanson", "SomeoneElse", "12345678" }, "Dialog Title" )
+```
+
+##### Send a request with a message and title but allow the user to select the recipients
+```lua
+facebook:sendRequest( "Check out this game!", nil, "Dialog Title" )
+```
+
 ##### Logout
 ```lua
 facebook:logout()

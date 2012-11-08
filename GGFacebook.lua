@@ -59,8 +59,11 @@ function GGFacebook:new( appID, listener, permissions )
     self.appID = appID
     self.listener = listener
     self.permissions = permissions
+    self.accessToken = nil
     
     self.internalListener = function( event )
+    	
+    	self.accessToken = event.token
     	
     	if self.listener then
     		if self.listener( event ) then
@@ -129,6 +132,35 @@ end
 -- @param params Table of paramaters passed to the Facebook API.
 function GGFacebook:showDialog( action, params )
 	facebook.showDialog( action, params )
+end
+
+--- Send a request to a user.
+-- @param message The message to include with the request.
+-- @param to Either a single ID of a Facebook user to send to or a table or IDs. Optional, leave out to just bring up the multi-user select screen.
+-- @param title Title for the dialog, optional and max of 50 characters.
+function GGFacebook:sendRequest( message, to, title )
+	
+	local params = {}
+	params.message = message or ""
+	params.title = title
+	params.data = data
+	
+	if to then
+		if type( to ) == "table" then
+			params.to = ""
+			for i = 1, #to, 1 do
+				params.to = params.to .. to[ i ]
+				if i < #to then
+					params.to = params.to .. ","
+				end
+			end
+		else
+			params.to = to
+		end
+	end
+	
+	self:showDialog( "apprequests", params )
+	
 end
 
 --- Checks if the user is logged in, only works if you're listener function doesn't block the internal one.
